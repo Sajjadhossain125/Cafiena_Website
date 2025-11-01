@@ -90,79 +90,138 @@ export default function CoffeeCountry() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const countryList = ["Spain", "Ukraine", "India", "United Kingdom", "Poland"];
   const cards = coffeeData[selectedCountry] || [];
-  
-
 
   return (
-    <div className="max-w-7xl mx-auto bg-black grid grid-cols-3 divide-x divide-[#6F4E37] py-10">
-      {/* Left Section - No cards here, just the original content */}
-      <div className="px-6">
-        <h4 className="text-sm font-semibold text-white">Coffee</h4>
-        <h2 className="text-3xl font-bold text-[#A7897B] mt-2">
-          Fresh roasted coffee <br /> with 24h delivery blogs
-        </h2>
-        <p className="text-white font-semibold mt-4">
-          Denver Biscuit cafe knows how to entice future customers. A video
-          takes viewers all the way from the preparation of one of their
-          desserts to the service.
-        </p>
-        <button className="mt-4 text-white font-bold underline font-medium">Show Products</button>
-      </div>
-      
-      {/* Middle Section */}
-      <div className="flex flex-col justify-start relative px-6 ">
-        <h4 className="text-sm font-semibold text-white mb-6">Choose the origin of the coffee:</h4>
-        <ul className="space-y-4 text-4xl font-medium">
-          {countryList.map((country) => (
-            <li
-              key={country}
-              onClick={() => {
-                setSelectedCountry(country);
-                setCurrentIndex(0);
-              }}
-              className={`cursor-pointer transition-colors duration-200 ${
-                selectedCountry === country
-                  ? "text-white underline"
-                  : "text-[#A7897B] hover:text-white"
-              }`}
-            >
-              {country}
-            </li>
-          ))}
-        </ul>
-        
-        {/* Coffee Bean Image - Positioned in bottom right corner */}
-        <img
-          src="/src/assets/coffee-dummy-data/flying-coffee.png"
-          alt="Coffee Bean"
-          className="absolute bottom-2  right-2 w-32 opacity-70"
-        />
-      </div>
-      
-      {/* Right Section - Always show two cards with gap between them */}
-      <div className="px-6 flex flex-col justify-center relative">
-        {cards.length > 0 ? (
-          <div className="space-y-6">
-            {/* First Card - Always show current index */}
-            <div className="mb-4">
-              <FeatureCoffeeCard coffee={cards[currentIndex]} />
-            </div>
-            
-            {/* Second Card - Always show the next one */}
-            <div className="mb-4">
-              <FeatureCoffeeCard 
-                coffee={cards[(currentIndex + 1) % cards.length]} 
-              />
-            </div>
-            
-            {/* Slider Controls - Only show if there are more than 2 cards */}
-           
+    <div className="w-full bg-black py-6 md:py-10">
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Mobile Layout - Stacked */}
+        <div className="block lg:hidden space-y-6">
+          {/* Intro Section */}
+          <div>
+            <h4 className="text-sm font-semibold text-white">Coffee</h4>
+            <h2 className="text-2xl font-bold text-[#A7897B] mt-2">
+              Fresh roasted coffee with 24h delivery blogs
+            </h2>
+            <p className="text-white font-semibold mt-3 text-sm">
+              Denver Biscuit cafe knows how to entice future customers. A video
+              takes viewers all the way from the preparation of one of their
+              desserts to the service.
+            </p>
+            <button className="mt-3 text-white font-bold underline text-sm">
+              Show Products
+            </button>
           </div>
-        ) : (
-          <div className="text-center py-8 text-gray-400">
-            <p>No coffee available for this country.</p>
+
+          {/* Country Selection */}
+          <div>
+            <h4 className="text-sm font-semibold text-white mb-4">
+              Choose the origin of the coffee:
+            </h4>
+            <div className="flex gap-3 overflow-x-auto pb-2">
+              {countryList.map((country) => (
+                <button
+                  key={country}
+                  onClick={() => {
+                    setSelectedCountry(country);
+                    setCurrentIndex(0);
+                  }}
+                  className={`text-lg font-medium whitespace-nowrap px-4 py-2 rounded-lg transition-colors duration-200 ${
+                    selectedCountry === country
+                      ? "bg-[#A7897B] text-white"
+                      : "text-[#A7897B] hover:bg-[#A7897B]/20"
+                  }`}
+                >
+                  {country}
+                </button>
+              ))}
+            </div>
           </div>
-        )}
+
+          {/* Coffee Cards */}
+          <div className="space-y-4">
+            {cards.length > 0 ? (
+              <>
+                <FeatureCoffeeCard coffee={cards[currentIndex]} />
+                {cards.length > 1 && (
+                  <FeatureCoffeeCard 
+                    coffee={cards[(currentIndex + 1) % cards.length]} 
+                  />
+                )}
+              </>
+            ) : (
+              <div className="text-center py-8 text-gray-400">
+                <p>No coffee available for this country.</p>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Desktop Layout - 3 Column Grid */}
+        <div className="hidden lg:grid lg:grid-cols-3 lg:divide-x lg:divide-[#6F4E37]">
+          {/* Left Section */}
+          <div className="px-6">
+            <h4 className="text-sm font-semibold text-white">Coffee</h4>
+            <h2 className="text-3xl font-bold text-[#A7897B] mt-2">
+              Fresh roasted coffee <br /> with 24h delivery blogs
+            </h2>
+            <p className="text-white font-semibold mt-4">
+              Denver Biscuit cafe knows how to entice future customers. A video
+              takes viewers all the way from the preparation of one of their
+              desserts to the service.
+            </p>
+            <button className="mt-4 text-white font-bold underline font-medium">
+              Show Products
+            </button>
+          </div>
+          
+          {/* Middle Section */}
+          <div className="flex flex-col justify-start relative px-6">
+            <h4 className="text-sm font-semibold text-white mb-6">
+              Choose the origin of the coffee:
+            </h4>
+            <ul className="space-y-4 text-4xl font-medium">
+              {countryList.map((country) => (
+                <li
+                  key={country}
+                  onClick={() => {
+                    setSelectedCountry(country);
+                    setCurrentIndex(0);
+                  }}
+                  className={`cursor-pointer transition-colors duration-200 ${
+                    selectedCountry === country
+                      ? "text-white underline"
+                      : "text-[#A7897B] hover:text-white"
+                  }`}
+                >
+                  {country}
+                </li>
+              ))}
+            </ul>
+            
+            {/* Coffee Bean Image */}
+            <img
+              src="/src/assets/coffee-dummy-data/flying-coffee.png"
+              alt="Coffee Bean"
+              className="absolute bottom-2 right-2 w-32 opacity-70"
+            />
+          </div>
+          
+          {/* Right Section */}
+          <div className="px-6 flex flex-col justify-center">
+            {cards.length > 0 ? (
+              <div className="space-y-6">
+                <FeatureCoffeeCard coffee={cards[currentIndex]} />
+                <FeatureCoffeeCard 
+                  coffee={cards[(currentIndex + 1) % cards.length]} 
+                />
+              </div>
+            ) : (
+              <div className="text-center py-8 text-gray-400">
+                <p>No coffee available for this country.</p>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
