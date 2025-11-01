@@ -1,4 +1,4 @@
-// Header.jsx - Fixed Version for Mobile
+// Header.jsx - Fixed Version for Mobile with Login/Search
 import React, { useState } from "react";
 import {
   Search,
@@ -79,7 +79,7 @@ const MobileMenu = ({ isOpen, onClose, menuItems }) => {
         </div>
 
         {/* Scrollable Content */}
-        <div className="overflow-y-auto flex-1" style={{ height: 'calc(100vh - 144px)' }}>
+        <div className="overflow-y-auto flex-1" style={{ height: 'calc(100vh - 250px)' }}>
           {activeSubmenu ? (
             renderSubmenu()
           ) : (
@@ -113,6 +113,28 @@ const MobileMenu = ({ isOpen, onClose, menuItems }) => {
             </div>
           )}
         </div>
+
+        {/* Bottom Actions - Search & Login */}
+        <div className="border-t border-gray-200 bg-white p-4 flex-shrink-0">
+          <div className="grid grid-cols-2 gap-3">
+            {/* Search Button */}
+            <button 
+              onClick={onClose}
+              className="flex items-center justify-center gap-2 px-4 py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-lg transition-colors font-medium"
+            >
+              <Search size={18} />
+              <span>Search</span>
+            </button>
+            
+            {/* Login Button */}
+            <Link to="/login" onClick={onClose}>
+              <button className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-[#A7897B] hover:bg-[#9C7B6B] text-white rounded-lg transition-colors font-medium">
+                <User size={18} />
+                <span>Login</span>
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
     </>
   );
@@ -133,7 +155,7 @@ const Header = () => {
     { name: "Blog", hasDropdown: true, component: <BlogDropDown /> },
   ];
 
-  // Close mobile menu when clicking outside
+  // Close mobile menu
   const handleCloseMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
@@ -147,7 +169,7 @@ const Header = () => {
             : "bg-black"
         }`}
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 md:gap-4">
           {/* Mobile Menu Button - Left */}
           <button
             onClick={() => setIsMobileMenuOpen(true)}
@@ -157,7 +179,7 @@ const Header = () => {
             <Menu size={20} />
           </button>
 
-          {/* Logo - Centered on mobile, left on desktop */}
+          {/* Logo */}
           <Link 
             to='/' 
             className="text-lg md:text-2xl font-bold tracking-wide flex-grow md:flex-grow-0 text-center md:text-left"
@@ -194,13 +216,13 @@ const Header = () => {
 
           {/* Right Side Actions */}
           <div className="flex items-center space-x-2 md:space-x-4 flex-shrink-0">
-            {/* Search - Hidden on mobile */}
+            {/* Search - Desktop only */}
             <button className="hidden sm:block p-2 hover:text-gray-300 transition-colors rounded-full hover:bg-gray-800">
               <Search size={18} />
             </button>
 
-            {/* User - Hidden on mobile */}
-            <Link to="/login" className="hidden sm:block">
+            {/* User - Visible on all screens */}
+            <Link to="/login" className="block">
               <button className="p-2 hover:text-gray-300 transition-colors rounded-full hover:bg-gray-800">
                 <User size={18} />
               </button>
