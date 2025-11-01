@@ -63,7 +63,7 @@ const MobileMenu = ({ isOpen, onClose, menuItems }) => {
           {/* Coffee Logo & Close Button - Dark Coffee Color */}
           <div className="bg-[#A7897B] px-4 py-4 flex items-center justify-between">
             {/* Logo */}
-            <div className="text-xl font-bold text-gray-800">Coffee</div>
+            <Link to='/' className="text-xl font-bold text-gray-800">The Caffeina </Link>
             
             {/* Close Button */}
             <button
@@ -138,7 +138,8 @@ const Header = () => {
       }`}>
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
-          <div className="text-2xl font-bold tracking-wide">Coffee</div>
+          <div className="text-2xl font-bold tracking-wide"></div>
+          <Link to='/' className="text-2xl font-bold tracking-wide">The Caffeina </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
