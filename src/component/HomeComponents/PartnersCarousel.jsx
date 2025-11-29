@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
 
-const partners = ["Coffee", "Latte", "Mocha", "Espresso", "Cappuccino"];
+const partners = ["Growlyweb"];
 
 function PartnersCarousel() {
   const sliderRef = useRef(null);
@@ -65,7 +65,7 @@ function PartnersCarousel() {
           <p className="text-white font-semibold text-sm mb-2 uppercase">
             Coffee
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#d1b094] leading-snug">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#CFA07A] leading-snug">
             Fresh roasted coffee <br /> with 24h delivery
           </h2>
         </div>

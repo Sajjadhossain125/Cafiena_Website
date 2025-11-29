@@ -1,0 +1,17 @@
+:root{
+  --primary: #2B1E1A;
+  --accent: #CFA07A;
+  --background: #0E0E0E;
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  border: 1px solid transparent; /* default */
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(207, 160, 122, 0.4); /* accent glow */
+  border: 1px solid var(--accent);
+}

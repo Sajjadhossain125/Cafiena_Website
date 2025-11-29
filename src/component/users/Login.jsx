@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
+import { ChevronLeft } from 'lucide-react';
+import video1 from "../../assets/coffee-dummy-data/video1.mp4";
 import './style.css'
-import { Link } from "react-router"
-
-
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -11,54 +10,89 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     if (!email || !password) {
-      // In a real app, you'd use a modal or a less intrusive notification.
       console.error('Please enter both email and password.');
       return;
     }
     console.log('Logging in with:', { email, password });
-    // Add your login API call here
   };
 
   return (
     <div className="page-wrapper">
-      <style>{`
-       
-      `}</style>
-      <a className="back-link">
-        <span className="back-arrow">←</span> Back To Home
+      {/* Background Video */}
+      <video
+        src={video1}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="bg-video"
+      />
+
+      {/* Overlay */}
+      <div className="bg-overlay"></div>
+
+      {/* Back link */}
+      <a href="/" className="back-link">
+        <ChevronLeft size={16} strokeWidth={2.5} />
+        <span>Back To Home</span>
       </a>
+
+      {/* Heading */}
       <h1 className="main-title">Log In</h1>
+      <p className="main-tagline">Welcome back to The Caffeina.</p>
 
+      {/* Form Container */}
       <div className="form-container">
-        <div className="form-section">
-          <h2 className="form-section-title">Log In</h2>
-        </div>
-
         <form onSubmit={handleLogin}>
-          <div className="form-section">
-            <div className="input-grid grid-col-2">
-              <div className="input-field">
-                <label htmlFor="email">Email <span className="required">*</span> :</label>
-                <input type="email" id="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-              </div>
-              <div className="input-field">
-                <label htmlFor="password">Password <span className="required">*</span> :</label>
-                <input type="password" id="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-              </div>
+          <div className="input-grid grid-col-2">
+            <div className="input-field">
+              <label htmlFor="email">
+                Email <span className="required">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="input-field">
+              <label htmlFor="password">
+                Password <span className="required">*</span>
+              </label>
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
             </div>
           </div>
 
-          <div className="form-section actions-section">
-            <a href="#" className="forgot-password">Forgot your password?</a>
-            <button type="submit" className="btn btn-primary">Log In →</button>
+          <div className="actions-section">
+            <a href="#" className="forgot-password">
+              Forgot your password?
+            </a>
+            <button type="submit" className="btn btn-primary">
+              Log In →
+            </button>
           </div>
         </form>
 
-        <div className="form-section footer-section">
-          <p className="footer-text">If you dont have account</p>
-          <Link className="btn btn-primary" to='/register'>Register →</Link>
+        <div className="footer-section">
+          <p className="footer-text">Don't have an account?</p>
+          <a className="btn btn-secondary" href="/register">
+            Register →
+          </a>
         </div>
+
+        <p className="brand-tagline">Crafted Coffee. Crafted Experience.</p>
       </div>
+
     </div>
   );
 };

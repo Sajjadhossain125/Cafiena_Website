@@ -1,31 +1,37 @@
-// CollectionDropDown.jsx - Mobile Responsive Version
 import React from "react";
 import { ChevronLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const collections = [
   {
     name: "Capsulated Coffee",
     image:
       "https://insanelygoodrecipes.com/wp-content/uploads/2020/07/Cup-Of-Creamy-Coffee.png",
+    path: "/collections/capsulated-coffee",
   },
   {
     name: "Brewing Tools",
     image:
       "https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=800&q=80",
+    path: "/brewing-tools",
   },
   {
     name: "Roast & Grinders",
     image:
       "https://www.kauveryhospitalsbangalore.com/assets/uploads/blog/mobcup_68526509d42eb.jpg",
+    path: "/roast-grinders",
   },
   {
     name: "Coffee",
     image:
       "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80",
+    path: "/coffee",
   },
 ];
 
 function CollectionDropDown({ isMobile = false, onBack }) {
+  const navigate = useNavigate();
+
   // Mobile View
   if (isMobile) {
     return (
@@ -43,7 +49,8 @@ function CollectionDropDown({ isMobile = false, onBack }) {
           {collections.map((item, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl shadow-md overflow-hidden"
+              onClick={() => navigate(item.path)}
+              className="bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer hover:shadow-xl transition-all"
             >
               <img
                 src={item.image}
@@ -68,6 +75,7 @@ function CollectionDropDown({ isMobile = false, onBack }) {
           {collections.map((item, index) => (
             <div
               key={index}
+              onClick={() => navigate(item.path)}
               className="bg-white rounded-2xl shadow-md hover:shadow-xl cursor-pointer transition-all duration-300 transform hover:scale-105"
             >
               <img

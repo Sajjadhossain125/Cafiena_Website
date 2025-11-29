@@ -11,7 +11,7 @@ import { Route } from "react-router-dom";
 function App() {
   const [allRoutes] = useState([...publicRoutes, ...adminRoutes,...userRouters]);
   const isAdminRoute = window.location.pathname.startsWith("/admin"); // ok if BrowserRouter is above App
-
+console.log(publicRoutes)
   return (
     <>
       {!isAdminRoute && <Header />}

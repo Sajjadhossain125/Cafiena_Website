@@ -147,8 +147,8 @@ const categories = [
   "All products",
   "Roasted coffee",
   "Coffee sets",
-  "Cups & Mugs",
   "Coffee makers and grinders",
+  "Cups & Mugs",
 ];
 
 export { products, categories };
